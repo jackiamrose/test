@@ -8,26 +8,33 @@
         .input{display:none}
         input{width:100px;height:50px;position:absolute;top:50%;left:50%}
         div#content{width:1000px;height:800px;overflow:hidden;font-size: 23px;border: 1px solid black;font-weight: 200;text-align: center;margin:0 auto;}
+        div#animate{width:100%;position:relative;top:0;animation:top 158s linear 26s  infinite running;}
+        @keyframes top{
+            from {top:0; }
+            to {top:-100%;}
+        }
     </style>
 
 </head>
 <body>
 <input type="button" value="按钮" >
-<div id="content"></div>
+<div id="content">
+	<div id="animate"></div>
+</div>
 <script type="text/javascript">
     var str='cat,bat,sat,gat';
     var patter=/.at/;
     var martchs=str.match(patter);
-    alert( martchs instanceof Array);
+    //alert( martchs instanceof Array);
 
     function test(){
         var colors=[10,5,9,8,1];
         //colors.unshift("green","pink");
         //alert(colors);
-        function compare(value1,value2){
+         function compare(value1,value2){
             return value1-value2;
         }
-        alert(colors.sort(compare))
+        return colors.sort(compare);
     }
 
     //test();
@@ -55,21 +62,22 @@
             }
 
             xml.onreadystatechange = function(){
-                if(xml.readyState == 0 || xml.status == 200){
-                    document.getElementById("content").innerHTML= xml.responseText;
+                if(xml.readyState == 4 || xml.status == 200){
+                    document.getElementById("animate").innerHTML= xml.responseText;
 
                 }
             };
 
-            xml.open("GET","src.txt",true);
-            xml.send(null);
+            xml.open("POST","./src.txt",true);
+            xml.send();
             input.setAttribute("class","input");
             var voice=document.createElement("audio");
             var source=document.createElement("source");
             voice.appendChild(source);
 
-            source.setAttribute("src","assets/audio/TS.mp3");
-            //voice.setAttribute("autoplay","autoplay");
+            source.setAttribute("src","assets/audio/不为谁而作的歌.mp3");
+            voice.setAttribute("autoplay","autoplay");
+            voice.setAttribute("autoplay","autoplay");
 
             document.getElementsByTagName("body")[0].appendChild(voice);
 
@@ -77,19 +85,7 @@
 
     };
 
-
-    var animate=function(){
-        var div= document.getElementsByTagName("div")[0];
-        var br= div.innerHTML;
-        console.log(br);
-        var geci = br.split("<br>");
-        console.log(geci);
-        setInterval(function (){
-             /*执行歌词滚动*/
-        },500)
-    };
-
-    function bind(ele,elementname,fun){
+    var bind=function (ele,elementname,fun){
        var onelementname= "on"+elementname;
        if(ele.elementname){
            ele.elementname=fun;
