@@ -1,0 +1,12 @@
+CACHE MANIFEST
+#v1.0
+
+CACHE:
+index.html
+
+NETWORK:
+audio/不为谁而作的歌.MP3
+
+
+FALLBACK:
+fallback.html
