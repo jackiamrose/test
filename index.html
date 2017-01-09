@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="manifest.manifest">
 <head>
     <meta charset="UTF-8">
     <title>复习</title>
@@ -74,11 +74,8 @@
             var voice=document.createElement("audio");
             var source=document.createElement("source");
             voice.appendChild(source);
-
             source.setAttribute("src","assets/audio/不为谁而作的歌.mp3");
             voice.setAttribute("autoplay","autoplay");
-            voice.setAttribute("autoplay","autoplay");
-
             document.getElementsByTagName("body")[0].appendChild(voice);
 
         }
@@ -98,7 +95,7 @@
     var input = document.getElementsByTagName("input")[0];
 
     bind(input,"click",yinyue.getText);
-    bind(input,"click",animate)
+
 </script>
 </body>
 </html>
